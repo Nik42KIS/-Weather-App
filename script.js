@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,8 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// @ts-ignore
+import dateFormat from "./node_modules/dateformat/lib/dateformat.js";
 const API_KEY = '1afed292301b4a71852195852232611';
 const BASE_URL = 'http://api.weatherapi.com/v1';
+const header = document.querySelector('.header_title');
 const weatherSection = document.querySelector('.weather');
 const dayList = document.querySelector('.weather_day_list');
 const submitBtn = document.querySelector('.country_btn_submit');
@@ -19,6 +21,9 @@ const sendRequest = (locationName) => __awaiter(void 0, void 0, void 0, function
     const response = yield fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${locationName}&days=7`);
     const resultResponse = yield response.json();
     console.log(resultResponse);
+    if (header) {
+        header.textContent = 'The weather in ' + resultResponse.location.name;
+    }
     return resultResponse.forecast.forecastday;
 });
 submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener('click', (event) => {
@@ -29,19 +34,20 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
     const inputValue = inputCountry === null || inputCountry === void 0 ? void 0 : inputCountry.value;
     const selectTempValue = selectTemp === null || selectTemp === void 0 ? void 0 : selectTemp.value;
     const responseArr = sendRequest(inputValue).then((response) => {
+        var _a;
         console.log(response);
         response.map((item) => {
             console.log(item.day);
-            const weatherItem = document.createElement('div');
+            const weatherItem = document.createElement('li');
             weatherItem.classList.add('weather_item');
             const date = document.createElement('span');
-            date.textContent = 'Date:' + item.date;
+            date.textContent = dateFormat(item.date, "dddd, mmmm dS, yyyy");
             const avgHumidity = document.createElement('span');
             avgHumidity.textContent = 'Humidity:' + item.day.avghumidity;
             const avgTempC = document.createElement('span');
-            avgTempC.textContent = 'Temperature:' + item.day.avgtemp_c;
+            avgTempC.textContent = item.day.avgtemp_c + ' °C';
             const avgTempF = document.createElement('span');
-            avgTempF.textContent = 'Temperature:' + item.day.avgtemp_f;
+            avgTempF.textContent = item.day.avgtemp_f + ' ℉';
             const weatherDesc = document.createElement('span');
             weatherDesc.textContent = item.day.condition.text;
             const weatherImage = document.createElement('img');
@@ -53,9 +59,8 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
             else {
                 weatherImage.after(avgTempF);
             }
-            // const avgHumidity: Element | null = document.createElement('span')
-            // avgHumidity.textContent = element.avghumidity
             dayList === null || dayList === void 0 ? void 0 : dayList.append(weatherItem);
         });
+        (_a = dayList === null || dayList === void 0 ? void 0 : dayList.firstElementChild) === null || _a === void 0 ? void 0 : _a.classList.add('active_day');
     });
 });

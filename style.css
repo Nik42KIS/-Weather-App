@@ -3,6 +3,12 @@
     padding: 0;
 
 }
+body{
+    margin: 0 5px;
+}
+.country_input{
+    height: 50px;
+}
 
 span{
     font-size: 1.5rem;
@@ -13,4 +19,19 @@ span{
     display: grid;
     border: 3px dashed red;
     padding: 10px;
+}
+
+.weather_day_list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr)
+}
+.weather_day_list > li{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.active_day{
+    grid-column: 1/4;
 }
