@@ -10,9 +10,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const API_KEY = "1afed292301b4a71852195852232611";
 const BASE_URL = "http://api.weatherapi.com/v1";
-const sendRequest = () => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield fetch(`${BASE_URL}/current.json?key=${API_KEY}&q=london`);
+const weatherSection = document.querySelector('.weather');
+const dayList = document.querySelector('.weather_day_list');
+const submitBtn = document.querySelector('.country_btn_submit');
+const inputCountry = document.querySelector('.country_input');
+const sendRequest = (locationName) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${locationName}&days=7`);
     const resultResponse = yield response.json();
     console.log(resultResponse);
+    return resultResponse.forecast.forecastday;
 });
-sendRequest();
+submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const inputValue = inputCountry === null || inputCountry === void 0 ? void 0 : inputCountry.value;
+    const responseArr = sendRequest(inputValue).then(response => {
+        // console.log(response)
+    });
+    console.log('333', responseArr);
+    //.forecast.forecastday
+});
