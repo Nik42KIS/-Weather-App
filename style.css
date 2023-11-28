@@ -1,66 +1,97 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    overflow-y: hidden;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-header{
-    margin: 10px
+header {
+  margin-bottom: 20px;
+  background-color: rgb(74, 74, 74);
+  height: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 100px;
+  box-shadow: 10px 0 15px black;
 }
-body{
-    margin: 0 5px;
-    height: 100vh;
-    background-color: antiquewhite;
+.header_title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
-main{
-    height: 85vh;
+body {
+  height: 100vh;
+  background-color: antiquewhite;
 }
-.country{
-    display: inline-block;
+main {
+  height: 85vh;
+  margin: 0 10px;
 }
-.country_input{
-    height: 50px;
-    width: 600px;
-    font-size: 2rem;
-    padding-left: 5px;
-    border-radius: 6px;
+.country {
+  display: inline-block;
 }
-
-span{
-    font-size: 1.5rem;
-    margin: 5px;
-}
-
-.weather_item{
-    display: grid;
-    border: 1px solid grey;
-    background-color: white;
-    border-radius: 6px;
-}
-
-.weather_day_list{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:5px;
-}
- li{
-display: flex;
-justify-content: center;
-align-items: center; 
-flex-direction: column; 
-/* display: grid;
-grid-template-columns: 1fr 1fr ; */
-gap: 3px;
+.country_input {
+  height: 50px;
+  width: 600px;
+  font-size: 2rem;
+  padding-left: 5px;
+  border-radius: 6px;
 }
 
-.active_day{
-    height: 200px;
-    grid-column: 1/4;
+#temp {
+  height: 50px;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: space-between;
+  font-size: 2rem;
+  padding-left: 5px;
+  border-radius: 6px;
 }
-.active_day > .temp, .active_day > .temp{
-    grid-column: 2/3;
+.country_btn_submit {
+  height: 50px;
+  cursor: pointer;
+  font-size: 2rem;
+  padding-left: 5px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  transition: 0.2s;
+}
+.country_btn_submit:hover {
+  background-color: rgb(14, 14, 14);
+  color: rgb(220, 220, 220);
+}
+span {
+  font-size: 1.5rem;
+  margin: 5px;
+}
+
+.weather_item {
+  display: grid;
+  border: 2px solid grey;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.weather_day_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.active_day {
+  height: 200px;
+  grid-column: 1/4;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: space-between;
+}
+.active_day > .temp,
+.active_day > .temp {
+  grid-column: 2/3;
 }

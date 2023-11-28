@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // @ts-ignore
-import dateFormat from "./node_modules/dateformat/lib/dateformat.js";
+import dateFormat from './node_modules/dateformat/lib/dateformat.js';
 const API_KEY = '1afed292301b4a71852195852232611';
 const BASE_URL = 'http://api.weatherapi.com/v1';
 const header = document.querySelector('.header_title');
@@ -44,7 +44,7 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
             const weatherItem = document.createElement('li');
             weatherItem.classList.add('weather_item');
             const date = document.createElement('span');
-            date.textContent = dateFormat(item.date, "dddd, mmmm dS, yyyy");
+            date.textContent = dateFormat(item.date, 'dddd, mmmm dS, yyyy');
             const avgHumidity = document.createElement('span');
             avgHumidity.textContent = 'Humidity:' + item.day.avghumidity;
             const avgTempC = document.createElement('span');
