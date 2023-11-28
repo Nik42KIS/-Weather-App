@@ -11,7 +11,6 @@ interface ConditionData {
   icon:string
 }
 interface DayData {
-
 avghumidity: string,
 avgtemp_c: string,
 avgtemp_f: string,
@@ -19,7 +18,7 @@ condition: ConditionData
 }
 interface WeatherData {
   date:string,
-  day:DayData[],
+  day:DayData,
 }
 
 const sendRequest = async (locationName:string | undefined) : Promise<WeatherData[]> =>{
@@ -35,22 +34,24 @@ submitBtn?.addEventListener('click', (event) =>{
     const responseArr = sendRequest(inputValue).then(response =>{
         console.log(response)
         response.map((item =>{
+          console.log(item.day)
           const weatherItem: Element | null = document.createElement('div')
-          const date = item.date
-          item.day.map(element =>{
+          const date = item.date;
+ 
             const avgHumidity: Element | null = document.createElement('span')
-            avgHumidity.textContent = element.avghumidity
+            avgHumidity.textContent = item.day.avghumidity
             
             const avgTempC: Element | null = document.createElement('span')
-            avgHumidity.textContent = element.avgtemp_c
+            avgTempC.textContent = item.day.avgtemp_c
 
             const avgTempF: Element | null = document.createElement('span')
-            avgHumidity.textContent = element.avgtemp_f
+            avgTempF.textContent = item.day.avgtemp_f
 
+            weatherItem.append(avgHumidity, avgTempC, avgTempF)
             // const avgHumidity: Element | null = document.createElement('span')
             // avgHumidity.textContent = element.avghumidity
 
-          })
+          dayList?.append(weatherItem)
         })
         )
     })
