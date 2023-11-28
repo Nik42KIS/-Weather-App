@@ -28,14 +28,20 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
         response.map((item => {
             console.log(item.day);
             const weatherItem = document.createElement('div');
-            const date = item.date;
+            weatherItem.classList.add('weather_item');
+            const date = document.createElement('span');
+            date.textContent = 'Date:' + item.date;
             const avgHumidity = document.createElement('span');
-            avgHumidity.textContent = item.day.avghumidity;
+            avgHumidity.textContent = 'Humidity:' + item.day.avghumidity;
             const avgTempC = document.createElement('span');
-            avgTempC.textContent = item.day.avgtemp_c;
+            avgTempC.textContent = 'Temperature:' + item.day.avgtemp_c;
             const avgTempF = document.createElement('span');
-            avgTempF.textContent = item.day.avgtemp_f;
-            weatherItem.append(avgHumidity, avgTempC, avgTempF);
+            avgTempF.textContent = 'Temperature:' + item.day.avgtemp_f;
+            const weatherDesc = document.createElement('span');
+            weatherDesc.textContent = item.day.condition.text;
+            const weatherImage = document.createElement('img');
+            weatherImage.src = item.day.condition.icon;
+            weatherItem.append(date, weatherImage, weatherDesc, avgHumidity, avgTempC, avgTempF);
             // const avgHumidity: Element | null = document.createElement('span')
             // avgHumidity.textContent = element.avghumidity
             dayList === null || dayList === void 0 ? void 0 : dayList.append(weatherItem);

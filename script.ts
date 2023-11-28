@@ -36,18 +36,26 @@ submitBtn?.addEventListener('click', (event) =>{
         response.map((item =>{
           console.log(item.day)
           const weatherItem: Element | null = document.createElement('div')
-          const date = item.date;
- 
+          weatherItem.classList.add('weather_item')
+          const date: Element | null = document.createElement('span')
+          date.textContent = 'Date:' + item.date;
+          
             const avgHumidity: Element | null = document.createElement('span')
-            avgHumidity.textContent = item.day.avghumidity
+            avgHumidity.textContent = 'Humidity:' + item.day.avghumidity
             
             const avgTempC: Element | null = document.createElement('span')
-            avgTempC.textContent = item.day.avgtemp_c
+            avgTempC.textContent = 'Temperature:' + item.day.avgtemp_c
 
             const avgTempF: Element | null = document.createElement('span')
-            avgTempF.textContent = item.day.avgtemp_f
+            avgTempF.textContent = 'Temperature:' + item.day.avgtemp_f
 
-            weatherItem.append(avgHumidity, avgTempC, avgTempF)
+           const weatherDesc: Element | null = document.createElement('span')
+           weatherDesc.textContent = item.day.condition.text
+
+           const weatherImage: HTMLImageElement = document.createElement('img')
+           weatherImage.src = item.day.condition.icon
+
+            weatherItem.append(date, weatherImage, weatherDesc, avgHumidity, avgTempC, avgTempF)
             // const avgHumidity: Element | null = document.createElement('span')
             // avgHumidity.textContent = element.avghumidity
 

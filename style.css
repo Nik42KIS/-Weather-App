@@ -1,5 +1,16 @@
 *{
     margin: 0;
     padding: 0;
-    outline: 1px solid black;
+
+}
+
+span{
+    font-size: 1.5rem;
+    margin: 5px;
+}
+
+.weather_item{
+    display: grid;
+    border: 3px dashed red;
+    padding: 10px;
 }
