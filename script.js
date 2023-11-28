@@ -24,8 +24,20 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
     event.preventDefault();
     const inputValue = inputCountry === null || inputCountry === void 0 ? void 0 : inputCountry.value;
     const responseArr = sendRequest(inputValue).then(response => {
-        // console.log(response)
+        console.log(response);
+        response.map((item => {
+            const weatherItem = document.createElement('div');
+            const date = item.date;
+            item.day.map(element => {
+                const avgHumidity = document.createElement('span');
+                avgHumidity.textContent = element.avghumidity;
+                const avgTempC = document.createElement('span');
+                avgHumidity.textContent = element.avgtemp_c;
+                const avgTempF = document.createElement('span');
+                avgHumidity.textContent = element.avgtemp_f;
+                // const avgHumidity: Element | null = document.createElement('span')
+                // avgHumidity.textContent = element.avghumidity
+            });
+        }));
     });
-    console.log('333', responseArr);
-    //.forecast.forecastday
 });

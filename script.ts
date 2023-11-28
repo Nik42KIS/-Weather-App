@@ -12,17 +12,17 @@ interface ConditionData {
 }
 interface DayData {
 
-avghumidity: number,
-avgtemp_c: number,
-avgtemp_f: number,
+avghumidity: string,
+avgtemp_c: string,
+avgtemp_f: string,
 condition: ConditionData
 }
 interface WeatherData {
   date:string,
-  day:DayData,
+  day:DayData[],
 }
 
-const sendRequest = async (locationName:string | undefined) : Promise<WeatherData> =>{
+const sendRequest = async (locationName:string | undefined) : Promise<WeatherData[]> =>{
   const response = await fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${locationName}&days=7`)
   const resultResponse = await response.json()
   console.log(resultResponse)
@@ -33,8 +33,26 @@ submitBtn?.addEventListener('click', (event) =>{
     event.preventDefault()
     const inputValue :string | undefined = inputCountry?.value
     const responseArr = sendRequest(inputValue).then(response =>{
-        // console.log(response)
+        console.log(response)
+        response.map((item =>{
+          const weatherItem: Element | null = document.createElement('div')
+          const date = item.date
+          item.day.map(element =>{
+            const avgHumidity: Element | null = document.createElement('span')
+            avgHumidity.textContent = element.avghumidity
+            
+            const avgTempC: Element | null = document.createElement('span')
+            avgHumidity.textContent = element.avgtemp_c
+
+            const avgTempF: Element | null = document.createElement('span')
+            avgHumidity.textContent = element.avgtemp_f
+
+            // const avgHumidity: Element | null = document.createElement('span')
+            // avgHumidity.textContent = element.avghumidity
+
+          })
+        })
+        )
     })
-    console.log('333', responseArr)
-    //.forecast.forecastday
+
 })
