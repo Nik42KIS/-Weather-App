@@ -1,13 +1,29 @@
 *{
     margin: 0;
     padding: 0;
-
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-y: hidden;
+}
+header{
+    margin: 10px
 }
 body{
     margin: 0 5px;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+main{
+    height: 85vh;
+}
+.country{
+    display: inline-block;
 }
 .country_input{
     height: 50px;
+    width: 600px;
+    font-size: 2rem;
+    padding-left: 5px;
+    border-radius: 6px;
 }
 
 span{
@@ -17,21 +33,34 @@ span{
 
 .weather_item{
     display: grid;
-    border: 3px dashed red;
-    padding: 10px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 6px;
 }
 
 .weather_day_list{
     display: grid;
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(3, 1fr);
+    gap:5px;
 }
-.weather_day_list > li{
+ li{
 display: flex;
 justify-content: center;
-align-items: center;
-flex-direction: column;
+align-items: center; 
+flex-direction: column; 
+/* display: grid;
+grid-template-columns: 1fr 1fr ; */
+gap: 3px;
 }
 
 .active_day{
+    height: 200px;
     grid-column: 1/4;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: space-between;
+}
+.active_day > .temp, .active_day > .temp{
+    grid-column: 2/3;
 }

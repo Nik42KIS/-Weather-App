@@ -41,6 +41,8 @@ submitBtn?.addEventListener('click', (event) => {
     dayList.innerHTML = '';
 }
   const inputValue: string | undefined = inputCountry?.value;
+  if(inputCountry?.value){
+  inputCountry.value = ''}
   const selectTempValue = selectTemp?.value;
   const responseArr = sendRequest(inputValue).then((response) => {
     console.log(response);
@@ -56,9 +58,11 @@ submitBtn?.addEventListener('click', (event) => {
 
       const avgTempC: Element | null = document.createElement('span');
       avgTempC.textContent = item.day.avgtemp_c + ' °C'
+      avgTempC.classList.add('temp')
 
       const avgTempF: Element | null = document.createElement('span');
       avgTempF.textContent = item.day.avgtemp_f + ' ℉';
+      avgTempF.classList.add('temp')
 
       const weatherDesc: Element | null = document.createElement('span');
       weatherDesc.textContent = item.day.condition.text;

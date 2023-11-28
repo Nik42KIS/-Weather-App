@@ -32,6 +32,9 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
         dayList.innerHTML = '';
     }
     const inputValue = inputCountry === null || inputCountry === void 0 ? void 0 : inputCountry.value;
+    if (inputCountry === null || inputCountry === void 0 ? void 0 : inputCountry.value) {
+        inputCountry.value = '';
+    }
     const selectTempValue = selectTemp === null || selectTemp === void 0 ? void 0 : selectTemp.value;
     const responseArr = sendRequest(inputValue).then((response) => {
         var _a;
@@ -46,8 +49,10 @@ submitBtn === null || submitBtn === void 0 ? void 0 : submitBtn.addEventListener
             avgHumidity.textContent = 'Humidity:' + item.day.avghumidity;
             const avgTempC = document.createElement('span');
             avgTempC.textContent = item.day.avgtemp_c + ' °C';
+            avgTempC.classList.add('temp');
             const avgTempF = document.createElement('span');
             avgTempF.textContent = item.day.avgtemp_f + ' ℉';
+            avgTempF.classList.add('temp');
             const weatherDesc = document.createElement('span');
             weatherDesc.textContent = item.day.condition.text;
             const weatherImage = document.createElement('img');
