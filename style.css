@@ -67,8 +67,13 @@ span {
   border: 2px solid grey;
   background-color: white;
   border-radius: 6px;
+  transition: .2s;
 }
-
+.weather_item:hover{
+  background-color: rgb(210, 210, 210);
+cursor: pointer;
+scale: 0.95;
+}
 .weather_day_list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -89,7 +94,7 @@ li {
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: space-between;
+  justify-content: space-evenly;
 }
 .active_day > .temp,
 .active_day > .temp {
